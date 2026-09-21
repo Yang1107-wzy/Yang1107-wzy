@@ -1,10 +1,22 @@
 # Zhengyang Wang · 王正旸
 
-Computer Science undergraduate at **BNBU**, interested in **AI systems, multimodal applications, and evaluation**. My projects connect data workflows, computer vision, and software engineering. My open-source work focuses on reproducible fixes and bug reports for AI and agent tooling.
+Computer Science undergraduate at **BNBU**, working on **multimodal AI, spatial reasoning, and research software**. My projects connect data validation, computer vision, and spatiotemporal modelling. I contribute reproducible fixes and bug reports to AI and agent tooling.
 
-BNBU 计算机本科生，关注 **AI 系统、多模态应用与评测**。结合数据流程、计算机视觉与软件工程经验，为大模型、Agent 及 AI 开发工具提供可复现的问题报告与修复。
+BNBU 计算机本科生，研究与项目涵盖 **多模态 AI、空间推理与科研软件**，结合数据校验、计算机视觉和时空建模经验，为 AI 与 Agent 工具提供可复现的问题报告和修复。
 
 [Website · 个人网站](https://wzhengyang.com) · [Research & projects · 研究与项目](https://wzhengyang.com/projects/)
+
+## Selected research & systems · 研究与系统
+
+| Project · 项目 | My work · 我的工作 |
+| --- | --- |
+| **MACH / MetaVision-DB** · 多模态推理 | Co-developed a VLM agent framework for visual metaphor reasoning and communication games; led dataset construction with concept–image alignment, schema validation, and manual review. |
+| **MapAgent** · 室内定位与空间推理 | Developed a Qwen3-based localisation agent combining BLE, motion, and map evidence, with independent verification and deterministic fallback. |
+| **MetroHeight** · RGB-D 测量 | Developed an iOS app and FastAPI backend, integrating SAM 3 segmentation, gravity-aligned reconstruction, and local RANSAC floor fitting for cargo-height measurement. |
+| **ST-Net** · 心脏影像时序分割 | Developed a cine MRI segmentation model with temporal attention and cyclic regularisation of area and centroid trajectories under ED/ES-only supervision. |
+| **Environmental modelling** · 环境时空建模 | Developed river-discharge forecasting with hydrological time series and river-network graphs; separately analysed soil-water and satellite vegetation signals for post-fire recovery. |
+
+These projects inform my open-source work on multimodal input handling, data reliability, and agent validation. / 开源选题围绕这些项目中的多模态输入、数据可靠性与 Agent 验证问题展开。
 
 ## Open-source contribution · 开源贡献
 
@@ -27,12 +39,6 @@ I developed a loading component for [Tencent KuiklyUI's official ecosystem task 
 **External acknowledgment:** a KuiklyUI project collaborator [confirmed task completion on 5 August 2026](https://github.com/Tencent-TDS/KuiklyUI/issues/1480#issuecomment-5192793318).
 
 为腾讯 KuiklyUI 官方生态任务开发跨平台加载组件，提供全屏/局部加载、状态控制、超时取消、声明式 DSL 及 Android/iOS 示例。成果以独立组件仓库交付，已获项目协作者在官方 Issue 中确认完成。
-
-## Research interests & ongoing work · 研究兴趣与在研工作
-
-For **MetaVision-DB**, I built dataset schemas, validation scripts, and staged review workflows for multimodal metaphor research. My [research portfolio](https://wzhengyang.com/projects/) also covers RGB-D sensing and vision applications. I am interested in how data quality, clear evaluation protocols, and reliable software support useful AI systems.
-
-在 **MetaVision-DB** 多模态隐喻研究中，我构建了数据 schema、验证脚本和分阶段审核流程。[其他研究项目](https://wzhengyang.com/projects/)还涉及 RGB-D 感知与视觉应用。我关注数据质量、清晰的评测协议及可靠的软件实现如何共同支撑 AI 系统。
 
 ## Computer vision · 计算机视觉
 
