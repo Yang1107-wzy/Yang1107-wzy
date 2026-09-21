@@ -11,10 +11,12 @@ BNBU 计算机本科生，关注 **AI 系统、多模态应用与评测**。结�
 | Project · 项目 | Contribution · 贡献 | Status · 状态 |
 | --- | --- | --- |
 | [Hugging Face Datasets](https://github.com/huggingface/datasets) | Fix cross-process locking for long filenames, with regression tests · 修复长文件名的跨进程锁失效并添加回归测试 | [PR #8654](https://github.com/huggingface/datasets/pull/8654) — submitted / 待审 |
+| [LlamaIndex](https://github.com/run-llama/llama_index) | Fix Base64 conversion of in-memory image streams for multimodal input · 修复多模态输入中内存图像流的 Base64 转换 | [PR #23159](https://github.com/run-llama/llama_index/pull/23159) — submitted / 待审 |
 | [Hugging Face Hub](https://github.com/huggingface/huggingface_hub) | Reproduce missing tools in paginated MCP discovery and prepare a tested fix · 复现 MCP 分页工具遗漏并准备经测试的修复 | [Issue #4956](https://github.com/huggingface/huggingface_hub/issues/4956) — reported / 已报告 |
 
 Technical case studies · 技术案例：
 
+- [In-memory images and model input encoding · 内存图像与模型输入编码](notes/llamaindex-image-streams.md)
 - [Cross-process cache locking · 跨进程缓存锁](notes/datasets-locking.md)
 - [MCP tool discovery and pagination · MCP 工具发现与分页](notes/mcp-tool-discovery.md)
 
