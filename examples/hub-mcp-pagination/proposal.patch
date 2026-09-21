@@ -1,0 +1,123 @@
+diff --git a/setup.py b/setup.py
+index eecbb10..df90948 100644
+--- a/setup.py
++++ b/setup.py
+@@ -48,10 +48,11 @@ extras["fastai"] = [
+ 
+ extras["hf_xet"] = [HF_XET_VERSION]
+ 
+-extras["mcp"] = ["mcp>=1.8.0, <2.0.0"]
++extras["mcp"] = ["mcp>=1.9.1, <2.0.0"]
+ 
+ extras["testing"] = (
+     extras["oauth"]
++    + extras["mcp"]
+     + [
+         "jedi",
+         "Jinja2",
+diff --git a/src/huggingface_hub/inference/_mcp/mcp_client.py b/src/huggingface_hub/inference/_mcp/mcp_client.py
+index 7331d13..3a51045 100644
+--- a/src/huggingface_hub/inference/_mcp/mcp_client.py
++++ b/src/huggingface_hub/inference/_mcp/mcp_client.py
+@@ -212,15 +212,19 @@ class MCPClient:
+ 
+         # List available tools
+         response = await session.list_tools()
+-        logger.debug("Connected to server with tools:", [tool.name for tool in response.tools])
++        server_tools = list(response.tools)
++        while response.nextCursor is not None:
++            response = await session.list_tools(cursor=response.nextCursor)
++            server_tools.extend(response.tools)
++        logger.debug(f"Connected to server with tools: {[tool.name for tool in server_tools]}")
+ 
+         # Filter tools based on allowed_tools configuration
+-        filtered_tools = response.tools
++        filtered_tools = server_tools
+ 
+         if allowed_tools is not None:
+-            filtered_tools = [tool for tool in response.tools if tool.name in allowed_tools]
++            filtered_tools = [tool for tool in server_tools if tool.name in allowed_tools]
+             logger.debug(
+-                f"Tool filtering applied. Using {len(filtered_tools)} of {len(response.tools)} available tools: {[tool.name for tool in filtered_tools]}"
++                f"Tool filtering applied. Using {len(filtered_tools)} of {len(server_tools)} available tools: {[tool.name for tool in filtered_tools]}"
+             )
+ 
+         for tool in filtered_tools:
+diff --git a/tests/test_inference_mcp.py b/tests/test_inference_mcp.py
+new file mode 100644
+index 0000000..0a1946c
+--- /dev/null
++++ b/tests/test_inference_mcp.py
+@@ -0,0 +1,72 @@
++# Copyright 2026-present, the HuggingFace Inc. team.
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++
++from contextlib import asynccontextmanager
++
++import anyio
++import pytest
++from mcp import types
++from mcp.server.lowlevel import Server
++from mcp.shared.memory import create_client_server_memory_streams
++
++from huggingface_hub import MCPClient
++
++
++pytestmark = pytest.mark.inference
++
++
++@pytest.mark.asyncio
++@pytest.mark.parametrize(
++    "pages,allowed_tools,expected_names",
++    [
++        ([["search_docs"]], None, ["search_docs"]),
++        ([["search_docs"], [], ["fetch_doc"]], None, ["search_docs", "fetch_doc"]),
++        ([["search_docs"], [], ["fetch_doc"]], ["fetch_doc"], ["fetch_doc"]),
++    ],
++)
++async def test_mcp_client_discovers_paginated_tools(monkeypatch, pages, allowed_tools, expected_names):
++    server = Server("paginated-tools")
++    requested_cursors = []
++
++    async def list_tools(request: types.ListToolsRequest) -> types.ServerResult:
++        cursor = request.params.cursor if request.params is not None else None
++        requested_cursors.append(cursor)
++        page_index = int(cursor) if cursor is not None else 0
++        return types.ServerResult(
++            types.ListToolsResult(
++                tools=[types.Tool(name=name, inputSchema={"type": "object"}) for name in pages[page_index]],
++                nextCursor=str(page_index + 1) if page_index + 1 < len(pages) else None,
++            )
++        )
++
++    server.request_handlers[types.ListToolsRequest] = list_tools
++
++    @asynccontextmanager
++    async def in_memory_stdio_client(_params):
++        async with create_client_server_memory_streams() as (client_streams, server_streams):
++            async with anyio.create_task_group() as task_group:
++                task_group.start_soon(server.run, *server_streams, server.create_initialization_options())
++                try:
++                    yield client_streams
++                finally:
++                    task_group.cancel_scope.cancel()
++
++    monkeypatch.setattr("mcp.client.stdio.stdio_client", in_memory_stdio_client)
++    with anyio.fail_after(5):
++        async with MCPClient(model="unused-offline-model") as client:
++            await client.add_mcp_server("stdio", command="unused", allowed_tools=allowed_tools)
++
++            assert [tool.function.name for tool in client.available_tools] == expected_names
++            assert list(client.sessions) == expected_names
++            assert requested_cursors == [None, *[str(index) for index in range(1, len(pages))]]
