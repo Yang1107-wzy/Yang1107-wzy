@@ -4,6 +4,8 @@
 
 This investigation relates to the validation and fallback work in my MapAgent project. All tools, positions, and model responses in the reproduction are synthetic; it does not use private research data or imply that MapAgent runs on LlamaIndex.
 
+[Run the offline reproduction](../examples/llamaindex-reliability/README.md): pinned dependencies, synthetic inputs, explicit failure exit codes, and comparison instructions.
+
 ## The failure boundary
 
 A function-calling agent keeps tool responses in its message history before deciding what to do next. A tool configured with `return_direct=True` can provide the final answer, but a tool failure must remain an error the agent can recover from.
@@ -19,7 +21,7 @@ Matching the aggregator's first-successful-result rule also keeps handoff select
 
 ## Validation and review scope
 
-I replayed the proposed `FunctionAgent` file against current core main, using a mock LLM and real execution of synthetic tools. `FunctionAgent` and a single-agent `AgentWorkflow`, each with streaming on and off, all retained both tool-call IDs but added the extra assistant error. Network connections were blocked for these checks. This was not a test of a real model provider or cross-agent handoff.
+I replayed the proposed `FunctionAgent` file against core base `f475afd8a9bbda84f252567e045d89d07b5701b3` (replacing only that file), using a mock LLM and real execution of synthetic tools. `FunctionAgent` and a single-agent `AgentWorkflow`, each with streaming on and off, all retained both tool-call IDs but added the extra assistant error. Network connections were blocked for these checks. This was not a test of a real model provider or cross-agent handoff.
 
 A local alternative matching the aggregator passed all four recovery checks. I shared the failure case and regression suggestions with the existing PR rather than opening a competing implementation. Submission does not establish that the review has been accepted or the proposed change merged.
 

@@ -2,6 +2,8 @@
 
 **Status, 21 September 2026:** [LlamaIndex PR #23159](https://github.com/run-llama/llama_index/pull/23159) submitted; not merged. The change concerns multimodal image preparation, an area related to my image-data and validation work.
 
+[Run the offline reproduction](../examples/llamaindex-reliability/README.md): pinned dependencies, synthetic inputs, explicit failure exit codes, and comparison instructions.
+
 ## The failure
 
 LlamaIndex accepts both `bytes` and file-like image streams. On `llama-index-core==0.14.24` and upstream commit `f475afd8`, the same PNG works as bytes but fails as `BytesIO` when converted into a data URL:
