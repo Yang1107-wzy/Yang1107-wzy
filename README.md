@@ -13,6 +13,8 @@ BNBU 计算机本科生，关注 **AI 系统、多模态应用与评测**。结�
 | [Hugging Face Datasets](https://github.com/huggingface/datasets) | Fix cross-process locking for long filenames, with regression tests · 修复长文件名的跨进程锁失效并添加回归测试 | [PR #8654](https://github.com/huggingface/datasets/pull/8654) — submitted / 待审 |
 | [Hugging Face Hub](https://github.com/huggingface/huggingface_hub) | Reproduce missing tools in paginated MCP discovery and prepare a tested fix · 复现 MCP 分页工具遗漏并准备经测试的修复 | [Issue #4956](https://github.com/huggingface/huggingface_hub/issues/4956) — reported / 已报告 |
 
+[Technical case study · 技术案例：跨进程文件锁修复](notes/datasets-locking.md)
+
 ### [KuiklyLoadingKit](https://github.com/Yang1107-wzy/KuiklyLoadingKit) — Kotlin Multiplatform
 
 I developed a loading component for [Tencent KuiklyUI's official ecosystem task #1480](https://github.com/Tencent-TDS/KuiklyUI/issues/1480). It provides full-screen and local overlays, loading-state control, timeout cancellation, a declarative DSL, and Android/iOS examples. The component is delivered in its own repository, with [API documentation](https://github.com/Yang1107-wzy/KuiklyLoadingKit/blob/main/docs/API.md) and [validation records](https://github.com/Yang1107-wzy/KuiklyLoadingKit/blob/main/docs/VALIDATION.md).
