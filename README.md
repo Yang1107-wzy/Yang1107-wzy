@@ -31,6 +31,7 @@ Technical case studies · 技术案例：
 - [In-memory images and model input encoding · 内存图像与模型输入编码](notes/llamaindex-image-streams.md)
 - [Cross-process cache locking · 跨进程缓存锁](notes/datasets-locking.md)
 - [MCP tool discovery and pagination · MCP 工具发现与分页](notes/mcp-tool-discovery.md)
+- [Tool failures and agent recovery · 工具失败与 Agent 回退](notes/agent-tool-results.md) — regression evidence and review / 回归证据与代码审查
 
 ### [KuiklyLoadingKit](https://github.com/Yang1107-wzy/KuiklyLoadingKit) — Kotlin Multiplatform
 
