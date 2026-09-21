@@ -31,6 +31,7 @@ These projects inform my open-source work on multimodal input handling, data rel
 | Project · 项目 | Contribution · 贡献 | Status · 状态 |
 | --- | --- | --- |
 | [Hugging Face Datasets](https://github.com/huggingface/datasets) | Fix cross-process locking for long filenames, with regression tests · 修复长文件名的跨进程锁失效并添加回归测试 | [PR #8654](https://github.com/huggingface/datasets/pull/8654) — submitted / 待审 |
+| [Hugging Face Datasets](https://github.com/huggingface/datasets) | Fix EXIF orientation when serializing in-memory PIL images, preserving TIFF compatibility · 修复内存图像序列化后的旋转与镜像错误，保持 TIFF 兼容 | [PR #8656](https://github.com/huggingface/datasets/pull/8656) — submitted / 待审 |
 | [LlamaIndex](https://github.com/run-llama/llama_index) | Fix Base64 conversion of in-memory image streams for multimodal input · 修复多模态输入中内存图像流的 Base64 转换 | [PR #23159](https://github.com/run-llama/llama_index/pull/23159) — submitted / 待审 |
 | [Hugging Face Hub](https://github.com/huggingface/huggingface_hub) | Reproduce missing tools in paginated MCP discovery and prepare a tested fix · 复现 MCP 分页工具遗漏并准备经测试的修复 | [Issue #4956](https://github.com/huggingface/huggingface_hub/issues/4956) — reported / 已报告 |
 
