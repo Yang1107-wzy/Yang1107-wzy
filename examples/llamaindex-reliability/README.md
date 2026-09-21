@@ -40,8 +40,9 @@ Locally verified comparisons:
 - Image probe: [proposed image fix `6e7527c`](https://github.com/Yang1107-wzy/llama_index/commit/6e7527ca48d861cfaa73eea724ce12aed8e0412e) passes with exit 0. [PR #23159](https://github.com/run-llama/llama_index/pull/23159) is submitted, not merged as of the validation date.
 - Agent probe: replaying the `FunctionAgent` file from [PR #22562 head `4624630`](https://github.com/run-llama/llama_index/pull/22562/commits/462463054382088055d47d6b3737db0e9d58fac9) against core base `f475afd8a9bbda84f252567e045d89d07b5701b3` (replacing only that source file) preserves both tool responses but still adds the assistant error; all four combinations exit with a failing verdict. This is distinct from the pinned release's original missing-response defect.
 - A local alternative matching the aggregator's selection passes all four combinations. It was used to validate the [review feedback](https://github.com/run-llama/llama_index/pull/22562#pullrequestreview-5266960619), not submitted as a competing PR or packaged here as an accepted fix.
+- Follow-up: after the author [addressed that feedback](https://github.com/run-llama/llama_index/pull/22562#issuecomment-5761540697), replaying the `FunctionAgent` file from head `eab11fac6a6cf327fa4be5f11e31e5b5bc7a13e6` against the same base passes all four combinations with exit 0. Eleven boundary unit regressions also pass. This update remains in the author's draft PR, not in the pinned release.
 
-These are behavioral probes, not a full test suite or an upstream acceptance claim. Normal and optimized Python runs were checked for each comparison.
+These are behavioral probes, not a full test suite or a claim of maintainer approval. The initial comparisons were checked with normal and optimized Python; the `eab11fac` follow-up was checked with normal Python.
 
 ## Attribution
 
