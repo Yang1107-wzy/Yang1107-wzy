@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="240" viewBox="0 0 1000 240" role="img" aria-labelledby="title desc">
+  <title id="title">Multimodal AI and spatial reasoning</title>
+  <desc id="desc">A research profile banner with an abstract image grid, geometric plane and connected nodes.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#122637"/>
+      <stop offset="1" stop-color="#172d36"/>
+    </linearGradient>
+    <linearGradient id="plane" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#74d9c0" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#74d9c0" stop-opacity="0.03"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="240" rx="18" fill="url(#background)"/>
+  <path d="M32 37V203" stroke="#72d7bf" stroke-width="3"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="54" y="61" font-size="14" letter-spacing="3" fill="#a7c7cf">RESEARCH &amp; ENGINEERING</text>
+    <text x="52" y="113" font-size="42" font-weight="700" fill="#f3f7fa">Multimodal AI.</text>
+    <text x="52" y="163" font-size="42" font-weight="700" fill="#f3f7fa">Spatial reasoning.</text>
+    <text x="55" y="199" font-size="17" fill="#b9d0d6">Data · Vision · Reliable software</text>
+  </g>
+  <g transform="translate(620 26)">
+    <path d="M9 137L138 190L328 115M138 190V68" fill="none" stroke="#688692" stroke-width="1" opacity="0.65"/>
+    <path d="M39 121L166 168L294 88L167 42Z" fill="url(#plane)" stroke="#68cbb7" stroke-width="1.5"/>
+    <g fill="none" stroke="#68cbb7" stroke-width="0.8" opacity="0.4">
+      <path d="M71 101L198 148M103 81L230 128M135 61L262 108"/>
+      <path d="M71 133L199 54M103 145L230 66M135 157L262 78"/>
+    </g>
+    <path d="M48 57L112 91L169 61L223 119L284 65" fill="none" stroke="#c4d7e5" stroke-width="2"/>
+    <path d="M112 91L116 145L223 119L260 164" fill="none" stroke="#7196b1" stroke-width="1.2" stroke-dasharray="4 5"/>
+    <g fill="#152b36" stroke="#8ee8d1" stroke-width="2.5">
+      <circle cx="48" cy="57" r="6"/>
+      <circle cx="112" cy="91" r="8"/>
+      <circle cx="169" cy="61" r="6"/>
+      <circle cx="223" cy="119" r="8"/>
+      <circle cx="284" cy="65" r="6"/>
+    </g>
+    <g fill="#a9bfce">
+      <circle cx="116" cy="145" r="3"/>
+      <circle cx="260" cy="164" r="3"/>
+      <circle cx="308" cy="142" r="2"/>
+      <circle cx="188" cy="19" r="2"/>
+    </g>
+  </g>
+</svg>

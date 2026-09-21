@@ -1,10 +1,16 @@
 # Zhengyang Wang · 王正旸
 
+![Multimodal AI and spatial reasoning](assets/research-header.svg)
+
 Computer Science undergraduate at **BNBU**, working on **multimodal AI, spatial reasoning, and research software**. My projects connect data validation, computer vision, and spatiotemporal modelling. I contribute reproducible fixes and bug reports to AI and agent tooling.
 
 BNBU 计算机本科生，研究与项目涵盖 **多模态 AI、空间推理与科研软件**，结合数据校验、计算机视觉和时空建模经验，为 AI 与 Agent 工具提供可复现的问题报告和修复。
 
 [Website · 个人网站](https://wzhengyang.com) · [Research & projects · 研究与项目](https://wzhengyang.com/projects/)
+
+[Research · 研究](#research) · [Contributions · 贡献](#contributions) · [Case studies · 案例](#case-studies) · [Projects · 项目](#projects)
+
+<a name="research"></a>
 
 ## Selected research & systems · 研究与系统
 
@@ -18,6 +24,8 @@ BNBU 计算机本科生，研究与项目涵盖 **多模态 AI、空间推理与
 
 These projects inform my open-source work on multimodal input handling, data reliability, and agent validation. / 开源选题围绕这些项目中的多模态输入、数据可靠性与 Agent 验证问题展开。
 
+<a name="contributions"></a>
+
 ## Open-source contribution · 开源贡献
 
 | Project · 项目 | Contribution · 贡献 | Status · 状态 |
@@ -25,6 +33,8 @@ These projects inform my open-source work on multimodal input handling, data rel
 | [Hugging Face Datasets](https://github.com/huggingface/datasets) | Fix cross-process locking for long filenames, with regression tests · 修复长文件名的跨进程锁失效并添加回归测试 | [PR #8654](https://github.com/huggingface/datasets/pull/8654) — submitted / 待审 |
 | [LlamaIndex](https://github.com/run-llama/llama_index) | Fix Base64 conversion of in-memory image streams for multimodal input · 修复多模态输入中内存图像流的 Base64 转换 | [PR #23159](https://github.com/run-llama/llama_index/pull/23159) — submitted / 待审 |
 | [Hugging Face Hub](https://github.com/huggingface/huggingface_hub) | Reproduce missing tools in paginated MCP discovery and prepare a tested fix · 复现 MCP 分页工具遗漏并准备经测试的修复 | [Issue #4956](https://github.com/huggingface/huggingface_hub/issues/4956) — reported / 已报告 |
+
+<a name="case-studies"></a>
 
 Technical case studies · 技术案例：
 
@@ -40,6 +50,8 @@ I developed a loading component for [Tencent KuiklyUI's official ecosystem task 
 **External acknowledgment:** a KuiklyUI project collaborator [confirmed task completion on 5 August 2026](https://github.com/Tencent-TDS/KuiklyUI/issues/1480#issuecomment-5192793318).
 
 为腾讯 KuiklyUI 官方生态任务开发跨平台加载组件，提供全屏/局部加载、状态控制、超时取消、声明式 DSL 及 Android/iOS 示例。成果以独立组件仓库交付，已获项目协作者在官方 Issue 中确认完成。
+
+<a name="projects"></a>
 
 ## Computer vision · 计算机视觉
 
