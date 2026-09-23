@@ -1,8 +1,8 @@
 # Discovering every MCP tool before applying an allowlist
 
-**Zhengyang Wang · AI-assisted open-source investigation · 21 September 2026**
+**Zhengyang Wang · AI-assisted open-source investigation · 21 September 2026; outcome updated 23 September 2026**
 
-[Hugging Face Hub Issue #4956](https://github.com/huggingface/huggingface_hub/issues/4956) reports incomplete tool discovery in `MCPClient`. The issue is open and awaiting scope feedback. A local patch and regression tests are complete; **no upstream PR has been opened and no fix has been merged**.
+[Hugging Face Hub Issue #4956](https://github.com/huggingface/huggingface_hub/issues/4956) reports incomplete tool discovery in `MCPClient`. The report was resolved by [PR #4960](https://github.com/huggingface/huggingface_hub/pull/4960), authored by **Kayvan-Zahiri** and merged by **hanouticelina** on **22 September 2026**. The PR explicitly links this issue and uses its stdio reproduction. My contribution is the bug report, reproduction and locally tested proposal; the merged implementation belongs to the PR author. A package release containing the fix has not been verified.
 
 ## A tool can exist but remain invisible
 
@@ -43,8 +43,8 @@ On macOS ARM64 with Python 3.11.15, the three new regressions produced **2 failu
 
 These are local results, not upstream CI or multi-platform results. The tests cover discovery and registration; they do not claim to exercise model inference, every server implementation or malformed pagination that repeats forever.
 
-The issue-first workflow follows the repository's [contribution guidance](https://github.com/huggingface/huggingface_hub/blob/8efc0a954dfd20cd8f4fd7987f1e51531f313dae/CONTRIBUTING.md). Scope and the dependency decision remain open to maintainer feedback. AI assisted the investigation, code, testing, review and writing; all stated test results come from executed checks.
+The issue-first workflow follows the repository's [contribution guidance](https://github.com/huggingface/huggingface_hub/blob/8efc0a954dfd20cd8f4fd7987f1e51531f313dae/CONTRIBUTING.md). The merged upstream implementation follows pagination and selects an MCP minimum of 1.9.4. The 1.9.1 results above describe my earlier local proposal, not the dependency floor of the merged change. That proposal is retained as historical reproduction material and does not need a competing PR. AI assisted the investigation, code, testing, review and writing; all stated test results come from executed checks.
 
 ## 中文摘要
 
-HF Hub 的 MCPClient 原先只获取工具列表第一页，后续页面的工具不会进入可用列表和 session 映射，允许列表若只选后页工具还会得到空结果。已用真实本地 stdio 服务复现，并准备“完整分页后再过滤”的修复与三类回归，在 MCP 1.9.1、1.30.0 验证通过。依赖下限调整是待维护者讨论的取舍；当前是已报告、补丁完成，尚未提交 PR 或合并。
+HF Hub 的 MCPClient 原先只获取工具列表第一页，后续页面的工具不会进入可用列表和 session 映射，允许列表若只选后页工具还会得到空结果。已用真实本地 stdio 服务复现，并准备“完整分页后再过滤”的修复与三类回归，在 MCP 1.9.1、1.30.0 验证通过。9月22日，Kayvan-Zahiri提交的PR #4960引用本issue及复现，并获维护者合并，采用MCP最低版本1.9.4。我的贡献是问题报告、复现和本地验证，合并代码归原PR作者；尚未核验包含该修复的发行版。

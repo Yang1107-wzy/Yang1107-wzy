@@ -2,7 +2,7 @@
 
 Companion to [the technical case study](../../notes/mcp-tool-discovery.md) and [upstream Issue #4956](https://github.com/huggingface/huggingface_hub/issues/4956).
 
-Status on 21 September 2026: issue open, local proposal tested, no upstream PR or merge. This directory contains a reproduction and a proposed patch for review. It is not an official Hub release.
+Status checked on 23 September 2026: [PR #4960](https://github.com/huggingface/huggingface_hub/pull/4960), authored by Kayvan-Zahiri, was merged on 22 September and resolves Issue #4956 using the issue reproduction. My contribution is the report and reproduction; the merged code is the other author's work. This directory preserves the original affected version and local proposal for comparison, not an official Hub release. The upstream fix requires MCP >=1.9.4; the historical local proposal below used 1.9.1.
 
 ## Run the affected version
 
@@ -33,4 +33,4 @@ The exact baseline, script and patch were tested locally. Package versions beyon
 
 ## Scope and attribution
 
-The patch modifies Hugging Face Hub, copyright the Hugging Face team, under the Apache License 2.0; that license is included here. The reproduction and additional test code are provided under the same license. AI assisted investigation, implementation, review and writing. This is a locally reproduced protocol behavior, with no production incident or upstream acceptance claimed.
+The patch modifies Hugging Face Hub, copyright the Hugging Face team, under the Apache License 2.0; that license is included here. The reproduction and additional test code are provided under the same license. AI assisted investigation, implementation, review and writing. This is a locally reproduced protocol behavior, with no production incident claimed. The report is resolved upstream by another contributor's merged fix; no package release or ownership of that implementation is claimed.
