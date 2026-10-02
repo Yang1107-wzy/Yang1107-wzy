@@ -40,6 +40,7 @@ These projects inform my open-source work on multimodal input handling, data rel
 
 Technical case studies · 技术案例：
 
+- [Invalid point clouds and false perfect scores · 无效点云与虚假零误差](examples/procrustes-validation/) — runnable probe; draft fix / 可运行复现，修复草稿待反馈
 - [In-memory images and model input encoding · 内存图像与模型输入编码](notes/llamaindex-image-streams.md)
 - [Cross-process cache locking · 跨进程缓存锁](notes/datasets-locking.md)
 - [MCP tool discovery and pagination · MCP 工具发现与分页](notes/mcp-tool-discovery.md)
