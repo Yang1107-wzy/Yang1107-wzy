@@ -56,6 +56,17 @@ I developed a loading component for [Tencent KuiklyUI's official ecosystem task 
 
 <a name="projects"></a>
 
+## Practical Agent workflows & tools · 实用 Agent 工作流与工具
+
+| Project · 项目 | Useful for · 用途 | Delivery · 交付 |
+| --- | --- | --- |
+| [Agent Workflow Skills](https://github.com/Yang1107-wzy/agent-workflow-skills) | Five practical Codex / Claude Code workflows: materials intake, desktop triage, sourced writing, repository handoff and skill research · 材料、桌面、写作、编程交接与技能调研 | Portable skills, executable helpers, bilingual docs, synthetic evaluations and CI · 可安装技能与脚本，持续维护 |
+| [MCP Config Doctor](https://github.com/Yang1107-wzy/mcp-config-doctor) | Offline MCP configuration preflight without starting servers · MCP 配置离线体检 | [v1.0.0](https://github.com/Yang1107-wzy/mcp-config-doctor/releases/tag/v1.0.0), wheel + source |
+| [JSONL Rescue](https://github.com/Yang1107-wzy/jsonl-rescue) | Streaming validation/deduplication with recoverable rejected records · 流式数据整理与可恢复拒收记录 | [v1.0.0](https://github.com/Yang1107-wzy/jsonl-rescue/releases/tag/v1.0.0), wheel + source |
+| [Eval Delta](https://github.com/Yang1107-wzy/eval-delta) | Paired evaluation comparisons that catch per-sample regressions · 按样本对齐的评测回归对比 | [v1.0.0](https://github.com/Yang1107-wzy/eval-delta/releases/tag/v1.0.0), wheel + source |
+
+These are independent practical tools, with synthetic public examples. Skill-library expansion is tracked in its [roadmap](https://github.com/Yang1107-wzy/agent-workflow-skills/blob/main/ROADMAP.md). / 公开示例均为合成数据；技能库按路线图逐项扩展。
+
 ## Computer vision · 计算机视觉
 
 ### [Archery target and score-region detection](https://github.com/Yang1107-wzy/archery-yolo11s-detection)
