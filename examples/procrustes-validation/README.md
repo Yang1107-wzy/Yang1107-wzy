@@ -4,7 +4,7 @@ A runnable, offline companion to my [TorchMetrics issue #3542](https://github.co
 
 Procrustes disparity compares point clouds after centering, scaling and alignment. A cloud containing only one distinct point cannot be normalized. In the affected implementation, the resulting SVD error is caught and replaced by a scalar zero score plus scale/rotation tensors. That looks like a perfect match, affects the whole batch, and returns a tuple even when callers requested only disparity. The stateful metric then crashes when it tries to sum that tuple.
 
-The proposed repair validates inputs before normalization and lets unexpected backend failures propagate. It preserves valid collinear clouds; collinearity alone is not a reason to reject a cloud. This example reflects my interest in geometry and measurement reliability through MetroHeight, without claiming that project uses TorchMetrics.
+The proposed repair validates inputs before normalization and lets unexpected backend failures propagate. It detects identical points before centering: a repeated decimal such as `0.1` can otherwise acquire a tiny nonzero centered norm through mean rounding. It preserves valid collinear clouds; collinearity alone is not a reason to reject a cloud. This example reflects my interest in geometry and measurement reliability through MetroHeight, without claiming that project uses TorchMetrics.
 
 ## Reproduce
 
@@ -17,15 +17,15 @@ python3.12 -m venv .venv
 .venv/bin/python check_point_clouds.py
 ```
 
-The last command should print JSON and exit **1**: invalid clouds return a zero-score tuple, while the metric raises `AttributeError`. Valid collinear inputs should pass. To compare the proposed repair in the same environment:
+The last command should print JSON and exit **1**: zero-spread integer-valued clouds return a zero-score tuple, while repeated `0.1` coordinates can slip through the mean-based check and incorrectly update the metric. Valid collinear inputs should pass. To compare the proposed repair in the same environment:
 
 ```bash
-.venv/bin/python -m pip install --no-deps --force-reinstall 'torchmetrics @ git+https://github.com/Yang1107-wzy/torchmetrics.git@3ba0b90f0a549106619bcd630d041c20903842af'
+.venv/bin/python -m pip install --no-deps --force-reinstall 'torchmetrics @ git+https://github.com/Yang1107-wzy/torchmetrics.git@5ecdc77ff71a4246b4d1620f8e2cfe36410783ae'
 .venv/bin/python check_point_clouds.py
 ```
 
-The repaired implementation should exit **0** with all six checks passing. Runtime verdicts work with `python -O` as well. On Windows use `.venv/Scripts/python.exe`.
+The repaired implementation should exit **0** with all eight checks passing. Runtime verdicts work with `python -O` as well. On Windows use `.venv/Scripts/python.exe`.
 
-Local verification: macOS ARM64, Python 3.12.13, PyTorch 2.10.0. The baseline and proposed commit were each tested using their complete `src` tree with the same environment; normal and optimized Python produced the expected exit codes. This is a focused behavioral probe, not the complete upstream CI. The separate PR shape suite passed 27 CPU tests with two distributed tests excluded. No GPU result is claimed.
+Local verification: macOS ARM64, Python 3.12.13, PyTorch 2.10.0. The baseline and proposed commit were each installed from their pinned remote commits into a fresh environment using the dependencies above; normal and optimized Python produced the expected exit codes. This is a focused behavioral probe, not the complete upstream CI. The separate PR shape suite passed 35 CPU tests with two distributed tests excluded. No GPU result is claimed.
 
 These original diagnostic files use the included MIT license. Codex assisted with investigation, implementation, testing and writing. TorchMetrics is the external library being tested; this example does not represent maintainer acceptance or a released fix.

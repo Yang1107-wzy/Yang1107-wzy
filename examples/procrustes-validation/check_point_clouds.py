@@ -12,7 +12,7 @@ from torchmetrics.shape import ProcrustesDisparity
 
 
 def main():
-    cloud = torch.arange(24, dtype=torch.float64).reshape(2, 4, 3)
+    cloud = torch.arange(42, dtype=torch.float64).reshape(2, 7, 3)
     checks = []
     observed = []
     with warnings.catch_warnings(record=True) as captured:
@@ -21,7 +21,7 @@ def main():
         valid = isinstance(disparity, torch.Tensor) and disparity.shape == (2,)
         valid = valid and torch.allclose(disparity, torch.zeros(2, dtype=cloud.dtype), atol=1e-12)
         checks.append({"case": "valid_collinear_transform", "passed": bool(valid)})
-        for label, invalid in [("constant", torch.ones_like(cloud)), ("nan", cloud.clone())]:
+        for label, invalid in [("constant", torch.ones_like(cloud)), ("constant_decimal", torch.full_like(cloud, 0.1)), ("nan", cloud.clone())]:
             if label == "nan":
                 invalid[1, 0, 0] = float("nan")
             for return_all in (False, True):
@@ -40,7 +40,7 @@ def main():
         metric.update(cloud, cloud)
         before = (metric.disparity.clone(), metric.total.clone())
         try:
-            metric.update(torch.ones_like(cloud), cloud)
+            metric.update(torch.full_like(cloud, 0.1), cloud)
         except ValueError:
             outcome, rejected = "ValueError", True
         except Exception as exc:
