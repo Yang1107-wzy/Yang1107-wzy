@@ -1,6 +1,6 @@
 # Invalid point clouds must not look like perfect predictions
 
-A runnable, offline companion to my [TorchMetrics issue #3542](https://github.com/Lightning-AI/torchmetrics/issues/3542) and [draft repair PR #3543](https://github.com/Lightning-AI/torchmetrics/pull/3543). As of 2 October 2026, the PR is submitted and **not merged**.
+A runnable, offline companion to my [TorchMetrics issue #3542](https://github.com/Lightning-AI/torchmetrics/issues/3542) and [repair PR #3543](https://github.com/Lightning-AI/torchmetrics/pull/3543). As of 2 October 2026, the PR is ready for review and **not merged**.
 
 Procrustes disparity compares point clouds after centering, scaling and alignment. A cloud containing only one distinct point cannot be normalized. In the affected implementation, the resulting SVD error is caught and replaced by a scalar zero score plus scale/rotation tensors. That looks like a perfect match, affects the whole batch, and returns a tuple even when callers requested only disparity. The stateful metric then crashes when it tries to sum that tuple.
 
